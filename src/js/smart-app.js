@@ -32,7 +32,7 @@
         onError();
       }
     }
-    alert("versionES-url-1013-2");
+    alert("versionES-1014-10");
     FHIR.oauth2.ready(onReady, onError);
     return ret.promise();
   };
@@ -99,6 +99,7 @@
       //console.log(JSON.stringify(patient));
       //getPractitioner(patient);
       alert(JSON.stringify(patient));
+      var es_url = "";	  
       var edipi = getPatientEDIPI(patient);
       var icn = getPatientICN(patient);
       var mrn = getPatientMRN(patient);
@@ -107,9 +108,10 @@
 //	if ( (edipi == 'undefined' ) && ( icn == 'undefined' ) && ( mrn == 'undefined' )  )
 	if ( (edipi == '' ) && ( icn == '' )   )		
 	{   console.log('No patient identifier found');
-		alert('The Patient is missing an EDIPI and ICN. Contact System Administrator.');
+	    alert('The Patient is missing an EDIPI and ICN. Contact System Administrator.');
+	    var es_url = "Not Availlabe";
       }
-	     
+if ( es_ur !== "Not Availlabe" ) {	     
       var fname = '';
       var lname = '';
  
@@ -151,8 +153,8 @@ var base64_text = btoa(es_dataUrl);
 var es_url = "https://usvadceapp.lcahncrls.net/cern-mutual-auth-service/b1930.lcahncrls.net/service/buildpostrequest?data="+ base64_text;  
       console.log(es_url);
       alert(es_url);
-      window.location.replace(es_url);
-      //window.location.reload();
+      window.open(es_url);
+    }
   };
 
 })(window);
